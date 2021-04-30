@@ -20,8 +20,7 @@ public class StreeCASE extends Stree {
 	@Override
 	public boolean checkType() throws StreeException {
 		Type typeLeft = getLeft().getType();
-		Type typeRight = getRight().getType();
-		if ((typeLeft != null) && (typeRight != null))
+		if (typeLeft != null)
 			return typeLeft.assertBoolean();
 		else
 			throw new StreeException("Type error while checking null types !");
