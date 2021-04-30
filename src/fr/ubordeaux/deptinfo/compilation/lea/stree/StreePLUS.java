@@ -30,8 +30,11 @@ public class StreePLUS extends Stree {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
 		type = typeLeft;
-		if ((typeLeft != null) && (typeRight != null))
+		if ((typeLeft != null) && (typeRight != null)) {
+			if ((typeLeft + "").equals("string") || (typeRight + "").equals("string"))
+				return true;
 			return typeLeft.assertEqual(typeRight);
+		}
 		else
 			throw new StreeException("Type error while checking null types !");
 	}
