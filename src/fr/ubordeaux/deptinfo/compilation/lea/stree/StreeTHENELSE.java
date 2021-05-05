@@ -8,29 +8,33 @@ import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 public class StreeTHENELSE extends Stree {
 
 	private Stm stm;
+	private Label labelTrue;
+	private Label labelFalse;
 
 	public StreeTHENELSE(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
+		this.labelTrue = new Label();
+		this.labelFalse = new Label();
 		this.stm = generateIntermediateCode();
+
 	}
 
 	public StreeTHENELSE(Stree left) throws TypeException, StreeException {
 		this(left, null);
-		this.stm = generateIntermediateCode();
 	}
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
-		Label label2 = new Label();
+		Label labelFin = new Label();
 		if(getRight() != null) {
 			return new SEQ(getLeft().getStm(),
-					new SEQ(new LABEL(label2), getRight().getStm()));
+					new SEQ(new JUMP(labelFin),
+							new SEQ(new LABEL(labelFalse),
+									new SEQ(getRight().getStm(), new LABEL(labelFin)))));
 		}
 		else {
-			return new SEQ(getLeft().getStm(), new LABEL(label2));
+			return new SEQ(getLeft().getStm(), new LABEL(labelFalse));
 		}
-
-
 	}
 
 	@Override
@@ -41,6 +45,16 @@ public class StreeTHENELSE extends Stree {
 	@Override
 	public Stm getStm() {
 		return stm;
+	}
+
+	@Override
+	public Label getLabelTrue() {
+		return labelTrue;
+	}
+
+	@Override
+	public Label getLabelFalse() {
+		return labelFalse;
 	}
 
 }

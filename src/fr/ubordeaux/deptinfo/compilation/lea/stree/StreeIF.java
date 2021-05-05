@@ -11,16 +11,15 @@ public class StreeIF extends Stree {
 
 	public StreeIF(Stree left, Stree right) throws StreeException, TypeException {
 		super(left, right);
+		System.out.println(getRight().getId());
 		this.stm = generateIntermediateCode();
 	}
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
-		Label label1 = new Label();
-		String l1S = label1 + "";
-		String[] l1SM = l1S.split("L");
-		int nL1S = Integer.parseInt(l1SM[1]) - 1;
-		Label label2 = new Label("L" + nL1S);
+		Label label1 = getRight().getLabelTrue();
+		Label label2 = getRight().getLabelFalse();
+
 		return new SEQ(new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), new CONST(0), label1, label2),
 				new SEQ(new LABEL(label1), getRight().getStm()));
 

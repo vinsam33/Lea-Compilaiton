@@ -7,6 +7,7 @@ import java.io.IOException;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.ExpList;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 
@@ -93,6 +94,7 @@ public abstract class Stree {
 		throw new StreeException("Not yet implemented: getStm() in " + this.getClass().getSimpleName());
 	}
 
+
 	public Exp getExp() throws StreeException {
 		throw new StreeException("Not yet implemented: getExp() in " + this.getClass().getSimpleName());
 	}
@@ -111,6 +113,20 @@ public abstract class Stree {
 
 	public boolean checkType() throws StreeException {
 		throw new StreeException("Not yet implemented: checkType() in " + this.getClass().getSimpleName());
+	}
+
+	public Label getLabelTrue() throws StreeException {
+		throw new StreeException("Not yet implemented: getLabelTrue() in " + this.getClass().getSimpleName());
+	}
+	public Label getLabelFalse() throws StreeException {
+		throw new StreeException("Not yet implemented: getLabelFalse() in " + this.getClass().getSimpleName());
+	}
+
+	public String[] getProduct() throws StreeException {
+		throw new StreeException("Not yet implemented: getProduct() in " + this.getClass().getSimpleName());
+	}
+	public String[] getProductLabels() throws StreeException {
+		throw new StreeException("Not yet implemented: getProductLabels() in " + this.getClass().getSimpleName());
 	}
 
 }
