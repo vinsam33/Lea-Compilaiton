@@ -122,11 +122,4 @@ public abstract class Stree {
 		throw new StreeException("Not yet implemented: getLabelFalse() in " + this.getClass().getSimpleName());
 	}
 
-	public String[] getProduct() throws StreeException {
-		throw new StreeException("Not yet implemented: getProduct() in " + this.getClass().getSimpleName());
-	}
-	public String[] getProductLabels() throws StreeException {
-		throw new StreeException("Not yet implemented: getProductLabels() in " + this.getClass().getSimpleName());
-	}
-
 }
