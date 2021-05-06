@@ -3,11 +3,13 @@ package fr.ubordeaux.deptinfo.compilation.lea.stree;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.ExpList;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.LabelList;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 
@@ -94,7 +96,6 @@ public abstract class Stree {
 		throw new StreeException("Not yet implemented: getStm() in " + this.getClass().getSimpleName());
 	}
 
-
 	public Exp getExp() throws StreeException {
 		throw new StreeException("Not yet implemented: getExp() in " + this.getClass().getSimpleName());
 	}
@@ -105,6 +106,10 @@ public abstract class Stree {
 
 	public ExpList getExpList() throws StreeException {
 		throw new StreeException("Not yet implemented: getExpList() in " + this.getClass().getSimpleName());
+	}
+
+	public LabelList getLabelList() throws StreeException {
+		throw new StreeException("Not yet implemented: getLabelList() in " + this.getClass().getSimpleName());
 	}
 
 	public Stm generateIntermediateCode() throws StreeException {
@@ -118,8 +123,13 @@ public abstract class Stree {
 	public Label getLabelTrue() throws StreeException {
 		throw new StreeException("Not yet implemented: getLabelTrue() in " + this.getClass().getSimpleName());
 	}
+
 	public Label getLabelFalse() throws StreeException {
 		throw new StreeException("Not yet implemented: getLabelFalse() in " + this.getClass().getSimpleName());
 	}
 
-}
+	public Label getLabelFin() throws StreeException {
+		throw new StreeException("Not yet implemented: getLabelFin() in " + this.getClass().getSimpleName());
+	}
+
+	}
