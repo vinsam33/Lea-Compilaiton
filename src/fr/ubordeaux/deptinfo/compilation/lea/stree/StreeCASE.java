@@ -10,19 +10,19 @@ import fr.ubordeaux.deptinfo.compilation.lea.type.TypeExpression;
 public class StreeCASE extends Stree {
 
 	private Stm stm;
-	private Label labelFalse;
 	private Type type;
+	private Label labelTrue;
 
 	public StreeCASE(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
 		this.type = new TypeExpression(Tag.NAME, left.getType()+"");
-		this.labelFalse = new Label();
+		this.labelTrue = new Label();
 		this.stm = generateIntermediateCode();
 	}
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
-		return new SEQ(new LABEL(labelFalse), getRight().getStm());
+		return new SEQ(new LABEL(labelTrue), getRight().getStm());
 	}
 
 	@Override
@@ -45,8 +45,13 @@ public class StreeCASE extends Stree {
 	}
 
 	@Override
+	public Label getLabelTrue() {
+		return labelTrue;
+	}
+
+	@Override
 	public Label getLabelFalse() {
-		return labelFalse;
+		return labelTrue;
 	}
 
 	@Override
