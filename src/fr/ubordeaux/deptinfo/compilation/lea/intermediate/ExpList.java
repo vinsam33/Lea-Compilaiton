@@ -13,4 +13,12 @@ public class ExpList {
 	public ExpList(Exp head) {
 		this(head, null);
 	}
+
+	public Exp getHead() {
+		return head;
+	}
+
+	public ExpList getTail() {
+		return tail;
+	}
 }
