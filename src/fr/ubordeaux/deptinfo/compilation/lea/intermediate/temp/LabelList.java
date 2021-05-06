@@ -12,4 +12,14 @@ public class LabelList {
 	public LabelList(Label head) {
 		this(head, null);
 	}
+
+	public Label getHead() {
+		return head;
+	}
+
+	public LabelList getTail() {
+		return tail;
+	}
+
+
 }
