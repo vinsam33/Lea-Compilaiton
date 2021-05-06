@@ -1,5 +1,7 @@
 package fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp;
 
+import java.util.Objects;
+
 /**
  * A Label represents an address in assembly language.
  */
@@ -23,6 +25,10 @@ public class Label {
 		this("L" + count++);
 	}
 
+	public int getCount() {
+		return(count);
+	}
+
 	@Override
 	public String toString() {
 		return name;
@@ -32,4 +38,16 @@ public class Label {
 		str.append("Label_" + name + " [shape=\"ellipse\", label=\""+ name +"\"];\n");
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Label label = (Label) o;
+		return Objects.equals(name, label.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
 }
