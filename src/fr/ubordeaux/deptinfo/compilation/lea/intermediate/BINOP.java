@@ -49,5 +49,9 @@ public class BINOP extends Exp {
 		return binop.toString();
 	}
 
+	public Code getBinop() {
+		return binop;
+	}
+
 
 }
