@@ -20,7 +20,30 @@ public class StreeIF extends Stree {
 		Label label1 = getRight().getLabelTrue();
 		Label label2 = getRight().getLabelFalse();
 
-		return new SEQ(new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), new CONST(0), label1, label2),
+		CJUMP.Op op;
+		String binop = getLeft().getExp().getBinop().toString();
+		switch(binop) {
+			case (">="):
+				op = CJUMP.Op.GE;
+				break;
+			case ("!="):
+				op = CJUMP.Op.NE;
+				break;
+			case ("<"):
+				op = CJUMP.Op.LT;
+				break;
+			case (">"):
+				op = CJUMP.Op.GT;
+				break;
+			case ("<="):
+				op = CJUMP.Op.LE;
+				break;
+			default:
+				op = CJUMP.Op.EQ;
+				break;
+		}
+
+		return new SEQ(new CJUMP(op, getLeft().getLeft().getExp(), getLeft().getRight().getExp(), label1, label2),
 				new SEQ(new LABEL(label1), getRight().getStm()));
 
 	}
