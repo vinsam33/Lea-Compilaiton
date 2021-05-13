@@ -9,10 +9,17 @@ public class StreeDEC extends Stree {
 	public static final Boolean LEFT = true;
 	private Boolean rank;
 	private Type type;
+	private Exp exp;
 
 	public StreeDEC(Stree left, Boolean rank) throws TypeException, StreeException {
 		super(left);
 		this.rank = rank;
+		this.exp = left.getExp();
+	}
+
+	@Override
+	public Exp getExp(){
+		return exp;
 	}
 
 	@Override
