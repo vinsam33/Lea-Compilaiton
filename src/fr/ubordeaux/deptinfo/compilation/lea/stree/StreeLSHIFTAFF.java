@@ -24,6 +24,11 @@ public class StreeLSHIFTAFF extends Stree {
 	}
 
 	@Override
+	public Stm getStm(){
+		return stm;
+	}
+	
+	@Override
 	public Type getType() throws StreeException {
 		return type;
 	}

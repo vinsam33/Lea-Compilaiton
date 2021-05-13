@@ -23,9 +23,16 @@ public class StreeORAFF extends Stree {
 	}
 
 	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
+	@Override
 	public Type getType() throws StreeException {
 		return type;
 	}
+
+	
 
 	@Override
 	public boolean checkType() throws StreeException {

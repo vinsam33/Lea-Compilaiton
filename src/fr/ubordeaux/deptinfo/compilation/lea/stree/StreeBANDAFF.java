@@ -23,6 +23,12 @@ public class StreeBANDAFF extends Stree {
 	}
 
 	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
+
+	@Override
 	public Type getType() throws StreeException {
 		return type;
 	}

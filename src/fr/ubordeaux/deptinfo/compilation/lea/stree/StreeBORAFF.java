@@ -22,6 +22,11 @@ public class StreeBORAFF extends Stree {
 		return new MOVE(getLeft().getExp(), exp);
 	}
 
+	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
 
 	@Override
 	public Type getType() throws StreeException {

@@ -12,7 +12,21 @@ public class StreeTIMESAFF extends Stree {
 	public StreeTIMESAFF(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
 		this.type = new TypeExpression(Tag.INTEGER);
+		exp = new StreeTIMES(getLeft(), getRight()).getExp();
+		this.stm = generateIntermediateCode();
 	}
+
+
+	@Override
+	public Stm generateIntermediateCode() throws StreeException{
+		return new MOVE(getLeft().getExp(), exp);
+	}
+	
+	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
 
 	@Override
 	public Type getType() throws StreeException {

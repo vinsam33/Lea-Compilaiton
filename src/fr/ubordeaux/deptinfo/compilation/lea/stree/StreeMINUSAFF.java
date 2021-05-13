@@ -28,6 +28,11 @@ public class StreeMINUSAFF extends Stree {
 	}
 
 	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
+	@Override
 	public boolean checkType() throws StreeException {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();

@@ -17,6 +17,17 @@ public class StreePLUSAFF extends Stree {
 		this.stm = generateIntermediateCode();
 	}
 
+
+	@Override
+	public Stm generateIntermediateCode() throws StreeException{
+		return new MOVE(getLeft().getExp(), exp);
+	}
+	
+	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
 	@Override
 	public Type getType() throws StreeException {
 		return type;
