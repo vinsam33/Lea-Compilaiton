@@ -72,7 +72,7 @@ public class StreeWHILE extends Stree {
 		if (typeLeft != null)
 			return typeLeft.assertBoolean();
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeWHILE");
 	}
 
 	@Override

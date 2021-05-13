@@ -42,7 +42,7 @@ public class StreeBANDAFF extends Stree {
 			return typeLeft.assertEqual(typeRight) && type.assertEqual(new TypeExpression(Tag.INTEGER));
 		}
 		else
-		throw new StreeException("Type error while checking null types !");
+		throw new StreeException("Type error while checking null types ! : StreeBANDAFF");
 	}
 
 }

@@ -21,7 +21,7 @@ public class StreeNEW extends Stree {
 			return typeLeft.getTag() == Tag.CLASS;
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeNEW");
 	}
 
 }

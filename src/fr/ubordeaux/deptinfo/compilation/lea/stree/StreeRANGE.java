@@ -44,7 +44,7 @@ public class StreeRANGE extends Stree {
 			return typeLeft.assertEqual(typeRight);
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeRANGE");
 	}
 
 }

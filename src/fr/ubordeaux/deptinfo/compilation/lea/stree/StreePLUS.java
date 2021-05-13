@@ -46,7 +46,7 @@ public class StreePLUS extends Stree {
 				&& (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types !  :StreePLUS");
 	}
 
 }

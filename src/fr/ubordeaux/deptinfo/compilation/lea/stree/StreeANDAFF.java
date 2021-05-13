@@ -35,7 +35,7 @@ public class StreeANDAFF extends Stree {
 			return typeLeft.assertEqual(typeRight) && typeLeft.assertBoolean();
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! : StreeANDAFF");
 	}
 
 	@Override

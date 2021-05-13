@@ -42,7 +42,7 @@ public class StreeMINUS extends Stree {
 		else if ((typeLeft != null) && (typeRight == null))
 			return type.assertEqual(new TypeExpression(Tag.INTEGER)) || type.assertEqual(new TypeExpression(Tag.FLOAT));
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeMINUS");
 	}
 
 }

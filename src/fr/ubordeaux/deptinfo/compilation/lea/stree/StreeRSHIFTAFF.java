@@ -40,7 +40,7 @@ public class StreeRSHIFTAFF extends Stree {
 			return typeLeft.assertEqual(typeRight);
 		}
 		else
-			throw new StreeException("Type error while checking null types ! shift aff");
+			throw new StreeException("Type error while checking null types ! :StreeRSHIFTAFF");
 	}
 
 }

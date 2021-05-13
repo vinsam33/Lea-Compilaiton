@@ -23,6 +23,11 @@ public class StreeSTRING extends Stree {
 	}
 
 	@Override
+	public String toString() {
+		return "StreeSTRING [value=" + value + "]";
+	}
+
+	@Override
 	public Exp getExp(){
 		return exp;
 	}

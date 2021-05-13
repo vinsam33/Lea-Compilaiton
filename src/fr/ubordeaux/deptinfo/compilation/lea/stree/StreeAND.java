@@ -37,7 +37,7 @@ public class StreeAND extends Stree {
 		}
 			
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! : StreeAND");
 	}
 
 }

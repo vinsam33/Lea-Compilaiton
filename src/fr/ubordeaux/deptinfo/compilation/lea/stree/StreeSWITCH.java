@@ -99,7 +99,7 @@ public class StreeSWITCH extends Stree {
 			return res;
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeSWITCH");
 	}
 
 	@Override

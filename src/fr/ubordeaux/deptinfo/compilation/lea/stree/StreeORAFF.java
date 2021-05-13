@@ -42,7 +42,7 @@ public class StreeORAFF extends Stree {
 			return typeLeft.assertEqual(typeRight) && typeLeft.assertBoolean();
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeORAFF");
 	}
 
 }

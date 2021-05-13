@@ -42,7 +42,7 @@ public class StreeMINUSAFF extends Stree {
 				&& (type.assertEqual(new TypeExpression(Tag.INTEGER)) || type.assertEqual(new TypeExpression(Tag.FLOAT)));
 		}
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeMINUSAFF");
 	}
 
 }

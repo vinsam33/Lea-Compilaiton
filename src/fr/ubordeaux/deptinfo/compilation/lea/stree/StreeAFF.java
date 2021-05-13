@@ -24,7 +24,7 @@ public class StreeAFF extends Stree {
 		if ((typeLeft != null) && (typeRight != null))
 			return typeLeft.assertEqual(typeRight);
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types !  : StreeAFF");
 
 	}
 

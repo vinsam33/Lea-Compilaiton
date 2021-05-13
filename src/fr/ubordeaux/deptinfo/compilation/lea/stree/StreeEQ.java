@@ -35,6 +35,6 @@ public class StreeEQ extends Stree {
 		if ((typeLeft != null) && (typeRight != null))
 			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types ! :StreeEQ");
 	}
 }

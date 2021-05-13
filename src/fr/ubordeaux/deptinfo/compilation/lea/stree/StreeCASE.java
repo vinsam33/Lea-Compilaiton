@@ -31,7 +31,7 @@ public class StreeCASE extends Stree {
 		if (typeLeft != null)
 			return true;
 		else
-			throw new StreeException("Type error while checking null types !");
+			throw new StreeException("Type error while checking null types !  :StreeCASE");
 	}
 
 	@Override
