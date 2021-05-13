@@ -33,7 +33,7 @@ public class StreeOR extends Stree {
 		Type typeRight = getRight().getType();
 		type = new TypeExpression(Tag.BOOLEAN);
 		if ((typeLeft != null) && (typeRight != null))
-			return typeLeft.assertEqual(typeRight);
+			return typeLeft.assertEqual(typeRight) && typeLeft.assertBoolean();
 		else
 			throw new StreeException("Type error while checking null types !");
 	}

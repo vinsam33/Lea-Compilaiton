@@ -2,8 +2,10 @@ package fr.ubordeaux.deptinfo.compilation.lea.stree;
 
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.BINOP;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
+import fr.ubordeaux.deptinfo.compilation.lea.type.Tag;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
+import fr.ubordeaux.deptinfo.compilation.lea.type.TypeExpression;
 
 public class StreeMINUS extends Stree {
 
@@ -36,9 +38,9 @@ public class StreeMINUS extends Stree {
 		Type typeRight = getRight().getType();
 		type = typeLeft;
 		if ((typeLeft != null) && (typeRight != null))
-			return typeLeft.assertEqual(typeRight);
+			return type.assertEqual(typeRight) && (type.assertEqual(new TypeExpression(Tag.INTEGER)) || type.assertEqual(new TypeExpression(Tag.FLOAT)));
 		else if ((typeLeft != null) && (typeRight == null))
-			return true;
+			return type.assertEqual(new TypeExpression(Tag.INTEGER)) || type.assertEqual(new TypeExpression(Tag.FLOAT));
 		else
 			throw new StreeException("Type error while checking null types !");
 	}

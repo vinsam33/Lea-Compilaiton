@@ -25,10 +25,15 @@ public class StreeLSHIFT extends Stree {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
 		type = typeLeft;
-		if((typeLeft != null) && (typeRight != null)){
-			return typeLeft.assertEqual(typeRight);
-		}else
+		if ((typeLeft != null) && (typeRight != null))
+			return type.assertEqual(typeRight) && type.assertEqual(new TypeExpression(Tag.INTEGER));
+		else
 			throw new StreeException("Type error while checking null types !");
+	}
+
+	@Override
+	public Type getType() throws StreeException {
+		return type;
 	}
 
 }

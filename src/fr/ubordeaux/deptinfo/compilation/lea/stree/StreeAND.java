@@ -32,8 +32,10 @@ public class StreeAND extends Stree {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
 		type = new TypeExpression(Tag.BOOLEAN);
-		if ((typeLeft != null) && (typeRight != null))
-			return typeLeft.assertEqual(typeRight);
+		if ((typeLeft != null) && (typeRight != null)) {
+			return typeLeft.assertEqual(typeRight) && typeLeft.assertBoolean();
+		}
+			
 		else
 			throw new StreeException("Type error while checking null types !");
 	}
