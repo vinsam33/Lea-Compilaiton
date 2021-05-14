@@ -18,7 +18,8 @@
 	<property name="lexer.targetfile" value="${parser.package}/Lexer.java" />
 	<property name="jflex" location="jflex" />
 	<property name="jflex.jar" location="${lib}/jflex-full-1.8.2.jar" />
-	<property name="bison" location="/usr/local/opt/bison/bin/bison" />
+	<property name="bison" location="/usr/bin/bison" />
+	<!--<property name="bison" location="/usr/local/opt/bison/bin/bison" /> -->
 	<description>
 		Compilation du projet
 	</description>
@@ -68,6 +69,13 @@
 			<arg value="${data}/input-4.lea" />
 		</java>
 		<!-- -->
+
+		<!-- -->
+		<!-- -->
+		<java classname="fr.ubordeaux.deptinfo.compilation.lea.Main"
+			classpath="${bin}" output="${data}/input-5.output" error="${data}/input-5.error">
+			<arg value="${data}/input-5.lea" />
+		</java>
 	</target>
 
 	<!-- ================================= = target: clean ================================= -->
@@ -85,6 +93,12 @@
 		</delete>
 		<delete>
 			<fileset dir="${data}" includes="input-*.error" />
+		</delete>
+		<delete>
+			<fileset dir="${data}" includes="*.dot" />
+		</delete>
+		<delete>
+			<fileset dir="${data}" includes="*.jpg" />
 		</delete>
 	</target>
 

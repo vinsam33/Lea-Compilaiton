@@ -1,0 +1,33 @@
+class main {
+	private m: integer;
+	private s: string;
+	
+	main(args: list<string>) {
+		m := 36;
+		s := "39";
+		j: integer := 1;
+
+		if (s == "38" || s != "36")
+			writeln(m + j);
+		if (m == 36 && m > 5)
+			writeln(5);
+		if(m/2 == 13)
+			writeln(13);
+		if(m < 33)
+			writeln(0);
+		if(m <= 36 || m >= 36)
+			writeln(36);
+		if (32 + 4 == m)
+			writeln(36);
+		if (38 - 2 == m)
+			writeln(36);
+		if (m != 38)
+			writeln("yes");
+		if(4*9 == m)
+			writeln(36);
+		
+		else
+			writeln("not");
+	}
+ 
+}
