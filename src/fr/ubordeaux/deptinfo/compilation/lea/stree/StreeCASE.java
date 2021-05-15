@@ -12,12 +12,14 @@ public class StreeCASE extends Stree {
 	private Stm stm;
 	private Type type;
 	private Label labelTrue;
+	private Exp exp;
 
 	public StreeCASE(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
 		this.type = new TypeExpression(Tag.NAME, left.getType()+"");
 		this.labelTrue = new Label();
 		this.stm = generateIntermediateCode();
+		this.exp = getLeft().getExp();
 	}
 
 	@Override
@@ -26,22 +28,20 @@ public class StreeCASE extends Stree {
 	}
 
 	@Override
-	public boolean checkType() throws StreeException {
-		Type typeLeft = getLeft().getType();
-		if (typeLeft != null)
-			return true;
-		else
-			throw new StreeException("Type error while checking null types !  :StreeCASE");
-	}
-
-	@Override
 	public Stm getStm() {
 		return stm;
 	}
 
 	@Override
-	public Type getType() throws StreeException {
-		return type;
+	public Type getType() throws StreeException { return type; }
+
+	@Override
+	public boolean checkType() throws StreeException {
+		Type typeLeft = getLeft().getType();
+		if (typeLeft != null)
+			return true;
+		else
+			throw new StreeException("Type error while checking null types !");
 	}
 
 	@Override
@@ -55,7 +55,5 @@ public class StreeCASE extends Stree {
 	}
 
 	@Override
-	public Exp getExp() throws StreeException {
-		return getLeft().getExp();
-	}
+	public Exp getExp() throws StreeException { return exp; }
 }
