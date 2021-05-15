@@ -21,4 +21,8 @@ public class ExpList {
 	public ExpList getTail() {
 		return tail;
 	}
+
+	public boolean hasNext() {
+		return tail != null;
+	}
 }
