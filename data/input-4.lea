@@ -2,10 +2,18 @@ class main {
 
 	main(args: list<string>) {
 		i: integer;
+		j: integer;
+		k: integer;
 		switch (i) {
 			case 32: writeln(6);
 			case 33: writeln(7);
 			default : writeln(8);
+		}
+		switch(j){
+			case 32: writeln(32);
+		}
+		switch(k){
+			default : writeln(0);
 		}
 	}
  
