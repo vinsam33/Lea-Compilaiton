@@ -1,9 +1,6 @@
 package fr.ubordeaux.deptinfo.compilation.lea.stree;
 
-import fr.ubordeaux.deptinfo.compilation.lea.intermediate.JUMP;
-import fr.ubordeaux.deptinfo.compilation.lea.intermediate.LABEL;
-import fr.ubordeaux.deptinfo.compilation.lea.intermediate.SEQ;
-import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.*;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Tag;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
@@ -34,14 +31,10 @@ public class StreeDEFAULT extends Stree {
 	}
 
 	@Override
-	public Type getType() throws StreeException {
-		return type;
-	}
+	public Type getType() throws StreeException { return type; }
 
 	@Override
-	public boolean checkType() throws StreeException {
-		return true;
-	}
+	public boolean checkType() throws StreeException { return true; }
 
 	@Override
 	public Label getLabelTrue() {
@@ -52,5 +45,8 @@ public class StreeDEFAULT extends Stree {
 	public Label getLabelFalse() {
 		return labelTrue;
 	}
+
+	@Override
+	public Exp getExp() throws StreeException { return null; }
 
 }
