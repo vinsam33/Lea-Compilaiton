@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.ExpList;
-import fr.ubordeaux.deptinfo.compilation.lea.intermediate.CaseList;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.LabelList;
@@ -107,10 +106,6 @@ public abstract class Stree {
 
 	public ExpList getExpList() throws StreeException {
 		throw new StreeException("Not yet implemented: getExpList() in " + this.getClass().getSimpleName());
-	}
-
-	public CaseList getCaseList() throws StreeException {
-		throw new StreeException("Not yet implemented: getCaseList() in " + this.getClass().getSimpleName());
 	}
 
 	public LabelList getLabelList() throws StreeException {
