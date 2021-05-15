@@ -24,30 +24,36 @@ public class StreePRODUCT extends Stree {
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException{
-		boolean vd = getRight().getType().assertEqual(new TypeExpression(Tag.VOID));
-		boolean cas;
-		if (getRight().getLabelTrue() == null || getRight().getLabelFalse() == null)
-			cas = false;
-		else
-			cas = true;
-			//cas = getRight().getLabelFalse().equals(getRight().getLabelTrue());
+		boolean defR = false;
+		boolean caseL = false;
+		boolean caseR = false;
+		labelFin = new Label();
 
-		if(vd || cas) {
-			Label r = getRight().getLabelTrue();
+		if(getLeft().getLabelTrue() != null && getRight().getType().assertEqual(new TypeExpression(Tag.VOID))) {
+			defR = true;
+			caseL = true;
+		}
+		else if (getLeft().getLabelTrue() != null && getRight().getLabelTrue() != null) {
+			caseL = true;
+			caseR = true;
+		}
+		//System.out.println("defR " + defR);
+		//System.out.println("caseL " + caseL);
+		//System.out.println("caseR " + caseR);
+
+		if((caseL && defR) || (caseL && caseR)) {
 			Label l = getLeft().getLabelTrue();
-			if(cas && !vd) {
-				exps = new ExpList(getRight().getExp());
-				System.out.println(exps.getHead());
-				exps = new ExpList(getLeft().getExp(), exps);
-				System.out.println(exps.getHead());
-			}
-			if(vd) {
-				exps = new ExpList(getLeft().getExp());
-			}
-			labelFin = new Label();
+			Label r = getRight().getLabelTrue();
+			exps = new ExpList(getRight().getExp());
+			if(caseR)
+				exps = new ExpList(getRight().getExp(), exps);
+			exps = new ExpList(getLeft().getExp(), exps);
 			labels = new LabelList(labelFin);
-			labels = new LabelList(r,labels); // default/\fin
+			labels = new LabelList(r,labels);
 			labels = new LabelList(l,labels);
+
+			if(defR)
+				return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), new SEQ(getRight().getStm(), new LABEL(labelFin)));
 
 			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), new SEQ(getRight().getStm(), new LABEL(labelFin)));
 		}
@@ -66,6 +72,7 @@ public class StreePRODUCT extends Stree {
 
 			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), getRight().getStm());
 		}
+
 	}
 
 	@Override
