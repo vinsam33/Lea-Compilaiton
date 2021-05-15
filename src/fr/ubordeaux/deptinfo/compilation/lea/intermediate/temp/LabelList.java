@@ -21,5 +21,8 @@ public class LabelList {
 		return tail;
 	}
 
+	public boolean hasNext() {
+		return tail != null;
+	}
 
 }
