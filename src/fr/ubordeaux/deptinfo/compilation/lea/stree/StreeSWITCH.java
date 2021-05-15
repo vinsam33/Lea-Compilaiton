@@ -1,5 +1,7 @@
 package fr.ubordeaux.deptinfo.compilation.lea.stree;
 
+import javax.swing.text.html.HTML.Tag;
+
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.*;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.LabelList;
@@ -9,97 +11,93 @@ import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 public class StreeSWITCH extends Stree {
 
 	private Stm stm;
-	private LabelList labels;
-	private ExpList exps;
+	private  Exp expr;
+	private Stm defaultStm;
+
+
+	// switch (left)
+	// { right}
 
 	public StreeSWITCH(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
-		labels = getRight().getLabelList();
-		exps = getRight().getExpList();
+		this.expr = left.getExp();
+		this.defaultStm = right.getStm();
 		this.stm = generateIntermediateCode();
 	}
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
 		System.out.println(getRight().getLabelFin());
-		//System.out.println(getRight().getLabelList().getHead());
-		//System.out.println(getRight().getExpList().getHead());
-		LabelList ls = labels;
-		Label tT = labels.getHead();
-		Label tF = new Label();
-		LabelList defL = labels;
-		do{
-			defL = defL.getTail();
-		} while(defL.getTail().getTail() != null);
-		if(exps.getTail() == null)
-			tF = defL.getHead();
-		ExpList exs = exps;
-		Exp ex = exps.getHead();
-		if(tT.equals(tF)){
-			tF = defL.getTail().getHead();
-		}
-		Stm tests = new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), ex, tT, tF);
-		Label ntF;
-		//Stm tests = new LABEL(tF);
-		//System.out.println(ls.getHead());
-		//System.out.println(exs.getHead());
-		/*while(exs != null){
-			tT = ls.getHead();
-			exs = exs.getTail();
-			if(exs != null) {
-				ls = ls.getTail();
-				ex = exs.getHead();
-				if(exs.getTail() == null) {
-					tF = defL.getHead();
-					tests = new SEQ(tests, new SEQ(new LABEL(tF), new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), ex, tT, tF)));
-				}
-				else {
-					tests = new SEQ(tests, new SEQ(new LABEL(tF), new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), ex, tT, tF)));
-					tF = new Label();
-				}
-			}
-		}*/
 
-		while(exs.getTail() != null){
-			ls = ls.getTail();
-			tT = ls.getHead();
-			exs = exs.getTail();
-			ex = exs.getHead();
-			ntF = tF;
-			if(exs.getTail() == null) {
-				Label tFF = defL.getHead();
-				if(tT.equals(tFF)){
-					tFF = defL.getTail().getHead();
-				}
-				tests = new SEQ(tests, new SEQ(new LABEL(ntF), new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), ex, tT, tFF)));
-			}
-			else {
-				tF = new Label();
-				tests = new SEQ(tests, new SEQ(new LABEL(ntF), new CJUMP(CJUMP.Op.EQ, getLeft().getExp(), ex, tT, tF)));
-			}
+		String result = "";
+		// label1:
+		//  case_1:  si exp== val_case1 goto code_case1 sinon case_2
+		//       code_case 1 : ..... (code)
+		//						goto label_fin
+		//  case_2:  si exp== val_case2 goto code_case2 sinon case_3 
+		//          code_case 2 : ..... (code)
+		//						goto label_fin
+		//    .......
+		//   default : ...... (code)
+		
+		//  label_fin
+
+		Label label_fin = new Label();
+		Label label_default = new Label();
+
+		Stm code;
+		if(defaultStm!=null){
+			code = new SEQ( new LABEL(label_default), new SEQ( defaultStm, new LABEL(label_fin) )  );
+		}else{
+			code = new LABEL (label_fin) ;
 		}
 
-		System.out.println(tests);
-		return new SEQ(tests, getRight().getStm());
+		CaseList cases = getRight().getCaseList();
+		cases = cases.getPrev();
+		CaseList fin = cases;
+
+		Label label_case_i , label_case_prev_i = new Label();
+		while(cases.getPrev() != fin){
+
+			CASE case_i = cases.getHead();
+			
+			SEQ jump_fin = new SEQ(case_i.getStm(), new JUMP(label_fin)  );
+
+			label_case_i = label_case_prev_i;
+
+			label_case_prev_i = new Label();
+
+			SEQ do_case = new SEQ( new LABEL (label_case_i), jump_fin  );
+
+			SEQ if_case = new SEQ( new CJUMP(CJUMP.Op.EQ, getExp(), case_i.getExp(), label_case_i, label_case_prev_i), do_case  );
+			
+			
+			code = new SEQ(if_case, code);
+
+			cases = cases.getPrev();
+			
+		}
+	
+		return code;
+	
 	}
 
 	@Override
 	public boolean checkType() throws StreeException {
-		Type typeLeft = getLeft().getType();
-		String[] productTypes = getRight().getType().toString().split(" X ");
-		String typeLeftS = typeLeft + "";
-		boolean res = true;
-		int n = productTypes.length;
 
-		if (typeLeft != null) {
-			for(int i = 0; i < n; i++) {
-				if(!typeLeftS.equals(productTypes[i]) && !productTypes[i].equals("void"))
-					res = false;
-			}
-			return res;
+		// expr.getType().assertEqual(new Type());  // tester si c'est un entier
+
+   		//expr.getType().assertEqual(new Type());  // tester si c'est un enum
+
+		
+		CaseList cases = getRight().getCaseList();
+		cases = cases.getPrev();
+		CaseList fin = cases;
+		while(cases.getPrev() != fin){
+
+			//cases.getHead().getStm().getType().assertEqual(expr.getType());
+			
 		}
-		else
-			throw new StreeException("Type error while checking null types ! :StreeSWITCH");
 	}
 
 	@Override
@@ -107,4 +105,7 @@ public class StreeSWITCH extends Stree {
 		return stm;
 	}
 
+	public Exp getExp() {
+		return expr;
+	}
 }
