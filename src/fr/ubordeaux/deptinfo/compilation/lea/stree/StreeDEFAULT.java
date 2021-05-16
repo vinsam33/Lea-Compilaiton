@@ -29,10 +29,14 @@ public class StreeDEFAULT extends Stree {
 	}
 
 	@Override
-	public Type getType() throws StreeException { return type; }
+	public Type getType() throws StreeException {
+		return type;
+	}
 
 	@Override
-	public boolean checkType() throws StreeException { return true; }
+	public boolean checkType() throws StreeException {
+		return true;
+	}
 
 	@Override
 	public Label getLabelTrue() {
@@ -45,11 +49,13 @@ public class StreeDEFAULT extends Stree {
 	}
 
 	@Override
-	public Label getLabelFin(){
+	public Label getLabelFin() {
 		return null;
 	}
 
 	@Override
-	public Exp getExp() throws StreeException { return null; }
+	public Exp getExp() throws StreeException {
+		return null;
+	}
 
 }

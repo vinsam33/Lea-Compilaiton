@@ -29,7 +29,7 @@ public class StreeWHILE extends Stree {
 
 		CJUMP.Op op;
 		String binop = getLeft().getExp().getBinop().toString();
-		switch(binop) {
+		switch (binop) {
 			case (">="):
 				op = CJUMP.Op.GE;
 				break;
@@ -50,19 +50,17 @@ public class StreeWHILE extends Stree {
 				break;
 		}
 		// label1:
-		// 	code du test
-		//  goto label2 si == 0 sinon goto label3
+		// code du test
+		// goto label2 si == 0 sinon goto label3
 		// label2:
-		//  corps de la boucle
-		//  goto label 1
+		// corps de la boucle
+		// goto label 1
 		// label3:
-		//  fin
-		return new SEQ(new LABEL(label1), 
-						new SEQ(new CJUMP(op, getLeft().getLeft().getExp(), getLeft().getRight().getExp(), label2, label3),
-								new SEQ(new LABEL(label2),
-										new SEQ(getRight().getStm(), 
-												new SEQ(new JUMP(label1),
-														new LABEL(label3))))));
+		// fin
+		return new SEQ(new LABEL(label1),
+				new SEQ(new CJUMP(op, getLeft().getLeft().getExp(), getLeft().getRight().getExp(), label2, label3),
+						new SEQ(new LABEL(label2),
+								new SEQ(getRight().getStm(), new SEQ(new JUMP(label1), new LABEL(label3))))));
 
 	}
 

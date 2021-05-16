@@ -25,33 +25,31 @@ public class StreePRODUCT extends Stree {
 	}
 
 	@Override
-	public Stm generateIntermediateCode() throws StreeException{
+	public Stm generateIntermediateCode() throws StreeException {
 		boolean defR = false;
 		boolean caseL = false;
 		boolean caseR = false;
 
-
-		if(getLeft().getLabelTrue() != null && getRight().getType().assertEqual(new TypeExpression(Tag.VOID))) {
-			//If the initial product is case and default.
+		if (getLeft().getLabelTrue() != null && getRight().getType().assertEqual(new TypeExpression(Tag.VOID))) {
+			// If the initial product is case and default.
 			defR = true;
 			caseL = true;
-		}
-		else if (getLeft().getLabelTrue() != null && getRight().getLabelTrue() != null) {
-			//If the initial product is case and case.
+		} else if (getLeft().getLabelTrue() != null && getRight().getLabelTrue() != null) {
+			// If the initial product is case and case.
 			caseL = true;
 			caseR = true;
 		}
 
-		if(caseL && defR) {
+		if (caseL && defR) {
 			labelFin = new Label();
 			Label r = getLeft().getLabelFalse();
 			temps = new TempList(getLeft().getTemp());
 			labels = new LabelList(labelFin);
-			labels = new LabelList(r,labels);
+			labels = new LabelList(r, labels);
 
-			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),new SEQ(new SEQ( new LABEL(r), getRight().getStm()), new LABEL(labelFin)));
-		}
-		else if(caseL && caseR) {
+			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),
+					new SEQ(new SEQ(new LABEL(r), getRight().getStm()), new LABEL(labelFin)));
+		} else if (caseL && caseR) {
 			labelFin = getRight().getLabelFalse();
 			Label r = getLeft().getLabelFalse();
 			Temp t1 = getRight().getTemp();
@@ -64,11 +62,12 @@ public class StreePRODUCT extends Stree {
 			Stm tmp = new MOVE(tmp_stm1, tmp_stm2);
 
 			labels = new LabelList(labelFin);
-			labels = new LabelList(r,labels);
+			labels = new LabelList(r, labels);
 
-			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),new SEQ(new SEQ(new SEQ(new LABEL(r), tmp), new SEQ(getRight().getStm(), new JUMP(labelFin))), new LABEL(labelFin)));
-		}
-		else {
+			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),
+					new SEQ(new SEQ(new SEQ(new LABEL(r), tmp), new SEQ(getRight().getStm(), new JUMP(labelFin))),
+							new LABEL(labelFin)));
+		} else {
 			labels = getRight().getLabelList();
 			Label r = getLeft().getLabelFalse();
 			labels = new LabelList(r, labels);
@@ -79,7 +78,8 @@ public class StreePRODUCT extends Stree {
 			temps = new TempList(getLeft().getTemp(), temps);
 			Stm tmp = new MOVE(tmp_stm1, tmp_stm2);
 
-			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), new SEQ(new SEQ(new LABEL(r), tmp), getRight().getStm()));
+			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),
+					new SEQ(new SEQ(new LABEL(r), tmp), getRight().getStm()));
 		}
 	}
 
@@ -92,19 +92,19 @@ public class StreePRODUCT extends Stree {
 	public Type getType() throws StreeException {
 		return type;
 	}
+
 	@Override
 	public boolean checkType() throws StreeException {
 		return true;
 	}
 
-
 	@Override
-	public LabelList getLabelList(){
+	public LabelList getLabelList() {
 		return labels;
 	}
 
 	@Override
-	public Label getLabelFin(){
+	public Label getLabelFin() {
 		return labelFin;
 	}
 

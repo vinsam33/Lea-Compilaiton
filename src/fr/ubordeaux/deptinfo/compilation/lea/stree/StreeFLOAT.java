@@ -34,13 +34,14 @@ public class StreeFLOAT extends Stree {
 	public Type getType() throws StreeException {
 		return type;
 	}
+
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
 	@Override
-	public boolean checkType(){
+	public boolean checkType() {
 		return true;
 	}
 

@@ -18,7 +18,7 @@ public class StreeNE extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
@@ -32,7 +32,8 @@ public class StreeNE extends Stree {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
 		type = new TypeExpression(Tag.BOOLEAN);
-		if ((typeLeft != null) && (typeRight != null) && ((typeLeft.getTag() == Tag.INTEGER) || (typeLeft.getTag() == Tag.FLOAT ) || (typeLeft.getTag() == Tag.STRING)))
+		if ((typeLeft != null) && (typeRight != null) && ((typeLeft.getTag() == Tag.INTEGER)
+				|| (typeLeft.getTag() == Tag.FLOAT) || (typeLeft.getTag() == Tag.STRING)))
 			return typeLeft.assertEqual(typeRight);
 		else
 			throw new StreeException("Type error while checking null types !  :StreeNE");

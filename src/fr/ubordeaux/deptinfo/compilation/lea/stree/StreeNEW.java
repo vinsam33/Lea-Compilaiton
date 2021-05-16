@@ -17,10 +17,9 @@ public class StreeNEW extends Stree {
 	public boolean checkType() throws StreeException {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
-		if((typeLeft != null) && (typeRight != null )){
+		if ((typeLeft != null) && (typeRight != null)) {
 			return typeLeft.getTag() == Tag.CLASS;
-		}
-		else
+		} else
 			throw new StreeException("Type error while checking null types ! :StreeNEW");
 	}
 

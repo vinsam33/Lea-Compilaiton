@@ -18,7 +18,7 @@ public class StreeEQ extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
@@ -33,7 +33,11 @@ public class StreeEQ extends Stree {
 		Type typeRight = getRight().getType();
 		type = new TypeExpression(Tag.BOOLEAN);
 		if ((typeLeft != null) && (typeRight != null))
-			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)) || typeLeft.assertEqual(new TypeExpression(Tag.STRING)) || typeLeft.assertEqual(new TypeExpression(Tag.BOOLEAN)) || typeLeft.assertEqual(new TypeExpression(Tag.ENUM)));
+			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.FLOAT))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.STRING))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.BOOLEAN))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.ENUM)));
 		else
 			throw new StreeException("Type error while checking null types ! :StreeEQ");
 	}

@@ -18,10 +18,10 @@ public class StreeSWITCH extends Stree {
 		Label labelFin = right.getLabelFin();
 		product = true;
 		def = false;
-		if(labelFin == null) {
+		if (labelFin == null) {
 			product = false;
 			Label labelTrue = right.getLabelTrue();
-			if(labelTrue == null)
+			if (labelTrue == null)
 				def = true;
 		}
 
@@ -31,19 +31,18 @@ public class StreeSWITCH extends Stree {
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
 
-		if(product) {
+		if (product) {
 			temps = getRight().getTempList();
 			TEMP tmp_stm = new TEMP(temps.getHead());
-			Stm tmp = new MOVE(tmp_stm,getLeft().getExp());
+			Stm tmp = new MOVE(tmp_stm, getLeft().getExp());
 			return new SEQ(tmp, getRight().getStm());
-		}
-		else {
-			if(def)
+		} else {
+			if (def)
 				return getRight().getStm();
 			else {
 				temps = new TempList(getRight().getTemp());
 				TEMP tmp_stm = new TEMP(temps.getHead());
-				Stm tmp = new MOVE(tmp_stm,getLeft().getExp());
+				Stm tmp = new MOVE(tmp_stm, getLeft().getExp());
 				return new SEQ(tmp, new SEQ(getRight().getStm(), new LABEL(getRight().getLabelFalse())));
 			}
 		}
@@ -58,19 +57,17 @@ public class StreeSWITCH extends Stree {
 		boolean res = true;
 
 		if (typeLeft != null) {
-			if(n > 1) {
-				for(int i = 0; i < n; i++) {
-					if(!typeLeftS.equals(productTypes[i]) && !productTypes[i].equals("void"))
+			if (n > 1) {
+				for (int i = 0; i < n; i++) {
+					if (!typeLeftS.equals(productTypes[i]) && !productTypes[i].equals("void"))
 						res = false;
 				}
-			}
-			else {
-				if(!typeLeftS.equals(productTypes[0]) && !productTypes[0].equals("void"))
+			} else {
+				if (!typeLeftS.equals(productTypes[0]) && !productTypes[0].equals("void"))
 					res = false;
 			}
 			return res;
-		}
-		else
+		} else
 			throw new StreeException("Type error while checking null types !");
 	}
 

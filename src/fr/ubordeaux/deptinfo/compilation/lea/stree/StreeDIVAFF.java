@@ -1,11 +1,11 @@
 package fr.ubordeaux.deptinfo.compilation.lea.stree;
+
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.MOVE;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
 import fr.ubordeaux.deptinfo.compilation.lea.type.*;
 
 public class StreeDIVAFF extends Stree {
-
 
 	private Type type;
 	private Stm stm;
@@ -19,7 +19,7 @@ public class StreeDIVAFF extends Stree {
 	}
 
 	@Override
-	public Stm generateIntermediateCode() throws StreeException{
+	public Stm generateIntermediateCode() throws StreeException {
 		return new MOVE(getLeft().getExp(), exp);
 	}
 
@@ -33,9 +33,9 @@ public class StreeDIVAFF extends Stree {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
 		type = typeLeft;
-		if((typeLeft != null) && (typeRight != null ))
-		return typeLeft.assertEqual(typeRight) 
-			&& (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
+		if ((typeLeft != null) && (typeRight != null))
+			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
 		else
 			throw new StreeException("Type error while checking null types ! StreeDIVAFF");
 	}

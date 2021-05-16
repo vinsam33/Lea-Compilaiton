@@ -22,7 +22,7 @@ public class StreeIF extends Stree {
 
 		CJUMP.Op op;
 		String binop = getLeft().getExp().getBinop().toString();
-		switch(binop) {
+		switch (binop) {
 			case (">="):
 				op = CJUMP.Op.GE;
 				break;

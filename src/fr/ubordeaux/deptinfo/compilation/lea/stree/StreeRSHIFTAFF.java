@@ -18,15 +18,15 @@ public class StreeRSHIFTAFF extends Stree {
 	}
 
 	@Override
-	public Stm generateIntermediateCode() throws StreeException{
+	public Stm generateIntermediateCode() throws StreeException {
 		return new MOVE(getLeft().getExp(), exp);
 	}
-	
+
 	@Override
-	public Stm getStm(){
+	public Stm getStm() {
 		return stm;
 	}
-	
+
 	@Override
 	public Type getType() throws StreeException {
 		return type;
@@ -36,10 +36,9 @@ public class StreeRSHIFTAFF extends Stree {
 	public boolean checkType() throws StreeException {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
-		if((typeLeft != null) && (typeRight != null )){
+		if ((typeLeft != null) && (typeRight != null)) {
 			return typeLeft.assertEqual(typeRight);
-		}
-		else
+		} else
 			throw new StreeException("Type error while checking null types ! :StreeRSHIFTAFF");
 	}
 

@@ -13,7 +13,7 @@ public class StreeAFF extends Stree {
 	}
 
 	@Override
-	public Stm getStm(){
+	public Stm getStm() {
 		return stm;
 	}
 
@@ -27,6 +27,5 @@ public class StreeAFF extends Stree {
 			throw new StreeException("Type error while checking null types !  : StreeAFF");
 
 	}
-
 
 }

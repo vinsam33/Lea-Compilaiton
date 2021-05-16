@@ -18,7 +18,7 @@ public class StreeAND extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
@@ -35,7 +35,7 @@ public class StreeAND extends Stree {
 		if ((typeLeft != null) && (typeRight != null)) {
 			return typeLeft.assertEqual(typeRight) && typeLeft.assertBoolean();
 		}
-			
+
 		else
 			throw new StreeException("Type error while checking null types ! : StreeAND");
 	}

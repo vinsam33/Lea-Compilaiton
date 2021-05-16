@@ -5,7 +5,7 @@ import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 
 public class StreeSEQ extends Stree {
-	
+
 	private Stm stm;
 
 	public StreeSEQ(Stree left, Stree right) throws StreeException, TypeException {

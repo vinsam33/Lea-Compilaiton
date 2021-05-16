@@ -21,7 +21,7 @@ abstract public class Exp {
 	}
 
 	abstract public String getDotLabel();
-	
+
 	public void toDotFile(String file) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(file));

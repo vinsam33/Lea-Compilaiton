@@ -26,10 +26,10 @@ public class StreeINTEGER extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
-	
+
 	@Override
 	public boolean checkType() {
 		return true;
@@ -38,6 +38,5 @@ public class StreeINTEGER extends Stree {
 	public Type getType() throws StreeException {
 		return type;
 	}
-
 
 }

@@ -6,7 +6,7 @@ import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 
 public class StreeARGS extends Stree {
-	
+
 	private ExpList expList;
 
 	public StreeARGS(Stree left, Stree right) throws StreeException, TypeException {

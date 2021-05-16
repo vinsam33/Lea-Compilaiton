@@ -26,13 +26,10 @@ public class StreeTHENELSE extends Stree {
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
 		Label labelFin = new Label();
-		if(getRight() != null) {
-			return new SEQ(getLeft().getStm(),
-					new SEQ(new JUMP(labelFin),
-							new SEQ(new LABEL(labelFalse),
-									new SEQ(getRight().getStm(), new LABEL(labelFin)))));
-		}
-		else {
+		if (getRight() != null) {
+			return new SEQ(getLeft().getStm(), new SEQ(new JUMP(labelFin),
+					new SEQ(new LABEL(labelFalse), new SEQ(getRight().getStm(), new LABEL(labelFin)))));
+		} else {
 			return new SEQ(getLeft().getStm(), new LABEL(labelFalse));
 		}
 	}

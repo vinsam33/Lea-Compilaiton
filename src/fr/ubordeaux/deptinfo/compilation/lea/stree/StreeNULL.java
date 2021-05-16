@@ -14,8 +14,6 @@ public class StreeNULL extends Stree {
 		this.type = null;
 	}
 
-
-
 	@Override
 	public Type getType() throws StreeException {
 		return type;

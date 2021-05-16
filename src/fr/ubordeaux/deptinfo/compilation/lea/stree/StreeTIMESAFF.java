@@ -1,4 +1,5 @@
 package fr.ubordeaux.deptinfo.compilation.lea.stree;
+
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.MOVE;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
@@ -16,17 +17,15 @@ public class StreeTIMESAFF extends Stree {
 		this.stm = generateIntermediateCode();
 	}
 
-
 	@Override
-	public Stm generateIntermediateCode() throws StreeException{
+	public Stm generateIntermediateCode() throws StreeException {
 		return new MOVE(getLeft().getExp(), exp);
 	}
-	
+
 	@Override
-	public Stm getStm(){
+	public Stm getStm() {
 		return stm;
 	}
-
 
 	@Override
 	public Type getType() throws StreeException {
@@ -38,12 +37,11 @@ public class StreeTIMESAFF extends Stree {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
 		type = typeLeft;
-		if((typeLeft != null) && (typeRight != null )){
-			
-			return typeLeft.assertEqual(typeRight) 
-				&& (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
-		}
-		else
+		if ((typeLeft != null) && (typeRight != null)) {
+
+			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
+		} else
 			throw new StreeException("Type error while checking null types ! :StreeTIMESAFF");
 	}
 

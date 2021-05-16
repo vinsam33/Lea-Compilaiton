@@ -12,14 +12,14 @@ public class StreeCASE extends Stree {
 
 	private Stm stm;
 	private Type type;
-	private Label labelTrue; //case label
-	private Label labelFalse;//other case, default, fin
+	private Label labelTrue; // case label
+	private Label labelFalse;// other case, default, fin
 	private Exp exp;
 	private Temp tmp;
 
 	public StreeCASE(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
-		this.type = new TypeExpression(Tag.NAME, left.getType()+"");
+		this.type = new TypeExpression(Tag.NAME, left.getType() + "");
 		this.stm = generateIntermediateCode();
 	}
 
@@ -30,7 +30,8 @@ public class StreeCASE extends Stree {
 		this.labelFalse = new Label();
 		this.tmp = new Temp();
 		TEMP tmp_stm = new TEMP(tmp);
-		return new SEQ(new CJUMP(CJUMP.Op.EQ, tmp_stm, exp, labelTrue, labelFalse), new SEQ(new LABEL(labelTrue),getRight().getStm()));
+		return new SEQ(new CJUMP(CJUMP.Op.EQ, tmp_stm, exp, labelTrue, labelFalse),
+				new SEQ(new LABEL(labelTrue), getRight().getStm()));
 	}
 
 	@Override
@@ -39,7 +40,9 @@ public class StreeCASE extends Stree {
 	}
 
 	@Override
-	public Type getType() throws StreeException { return type; }
+	public Type getType() throws StreeException {
+		return type;
+	}
 
 	@Override
 	public boolean checkType() throws StreeException {
@@ -61,14 +64,18 @@ public class StreeCASE extends Stree {
 	}
 
 	@Override
-	public Label getLabelFin(){
+	public Label getLabelFin() {
 		return null;
 	}
 
 	@Override
-	public Exp getExp() throws StreeException { return exp; }
+	public Exp getExp() throws StreeException {
+		return exp;
+	}
 
 	@Override
-	public Temp getTemp() { return tmp;}
+	public Temp getTemp() {
+		return tmp;
+	}
 
 }

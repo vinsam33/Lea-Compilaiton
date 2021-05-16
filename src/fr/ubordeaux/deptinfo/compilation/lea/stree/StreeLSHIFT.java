@@ -16,7 +16,7 @@ public class StreeLSHIFT extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 

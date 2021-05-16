@@ -24,9 +24,9 @@ public class StreeMETHOD extends Stree {
 		this.name = name;
 		this.type = type;
 	}
-	
+
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
@@ -34,6 +34,5 @@ public class StreeMETHOD extends Stree {
 	public boolean checkType() throws StreeException {
 		return true;
 	}
-
 
 }

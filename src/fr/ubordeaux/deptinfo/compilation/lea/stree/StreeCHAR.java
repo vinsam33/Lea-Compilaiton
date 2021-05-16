@@ -7,7 +7,6 @@ import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeExpression;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Tag;
 
-
 public class StreeCHAR extends Stree {
 
 	private Integer value;
@@ -27,12 +26,12 @@ public class StreeCHAR extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
 	@Override
-	public boolean checkType(){
+	public boolean checkType() {
 		return true;
 	}
 

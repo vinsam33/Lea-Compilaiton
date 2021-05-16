@@ -7,7 +7,6 @@ import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeExpression;
 
-
 public class StreeLE extends Stree {
 
 	private BINOP exp;
@@ -19,7 +18,7 @@ public class StreeLE extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
@@ -34,7 +33,8 @@ public class StreeLE extends Stree {
 		Type typeRight = getRight().getType();
 		type = new TypeExpression(Tag.BOOLEAN);
 		if ((typeLeft != null) && (typeRight != null))
-			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
+			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
 		else
 			throw new StreeException("Type error while checking null types ! :StreeLE");
 	}

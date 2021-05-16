@@ -18,10 +18,10 @@ public class StreePLUS extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
-	
+
 	@Override
 	public Type getType() throws StreeException {
 		return type;
@@ -36,16 +36,14 @@ public class StreePLUS extends Stree {
 		if ((typeLeft != null) && (typeRight != null)) {
 			if (typeLeft.assertEqual(new TypeExpression(Tag.STRING))) {
 				return true;
-			}
-			else if(typeRight.assertEqual(new TypeExpression(Tag.STRING))) {
+			} else if (typeRight.assertEqual(new TypeExpression(Tag.STRING))) {
 				type = typeRight;
 				return true;
 			}
 
-			return typeLeft.assertEqual(typeRight) 
-				&& (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
-		}
-		else
+			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
+		} else
 			throw new StreeException("Type error while checking null types !  :StreePLUS");
 	}
 

@@ -12,12 +12,10 @@ public class StreeSLOT extends Stree {
 		super(left);
 		this.name = name;
 
-
 	}
 
-
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 

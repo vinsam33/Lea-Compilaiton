@@ -20,14 +20,17 @@ public class StreeCALL extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
 	@Override
-	public Type getType() throws StreeException {return type;}
+	public Type getType() throws StreeException {
+		return type;
+	}
+
 	@Override
-	public Stm getStm(){
+	public Stm getStm() {
 		return stm;
 	}
 

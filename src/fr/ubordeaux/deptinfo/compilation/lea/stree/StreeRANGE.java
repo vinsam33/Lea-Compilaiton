@@ -8,13 +8,11 @@ import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 import fr.ubordeaux.deptinfo.compilation.lea.type.*;
 
-
 public class StreeRANGE extends Stree {
 
 	private Integer value;
 	private Exp exp;
 	private Type type;
-
 
 	public StreeRANGE(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
@@ -28,9 +26,10 @@ public class StreeRANGE extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
+
 	@Override
 	public Type getType() throws StreeException {
 		return type;
@@ -40,10 +39,9 @@ public class StreeRANGE extends Stree {
 	public boolean checkType() throws StreeException {
 		Type typeLeft = getLeft().getType();
 		Type typeRight = getRight().getType();
-		if((typeLeft != null) && (typeRight != null )){
+		if ((typeLeft != null) && (typeRight != null)) {
 			return typeLeft.assertEqual(typeRight);
-		}
-		else
+		} else
 			throw new StreeException("Type error while checking null types ! :StreeRANGE");
 	}
 

@@ -1,4 +1,5 @@
 package fr.ubordeaux.deptinfo.compilation.lea.stree;
+
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.MOVE;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Exp;
@@ -17,14 +18,13 @@ public class StreePLUSAFF extends Stree {
 		this.stm = generateIntermediateCode();
 	}
 
-
 	@Override
-	public Stm generateIntermediateCode() throws StreeException{
+	public Stm generateIntermediateCode() throws StreeException {
 		return new MOVE(getLeft().getExp(), exp);
 	}
-	
+
 	@Override
-	public Stm getStm(){
+	public Stm getStm() {
 		return stm;
 	}
 
@@ -42,15 +42,14 @@ public class StreePLUSAFF extends Stree {
 		if ((typeLeft != null) && (typeRight != null)) {
 			if (typeLeft.assertEqual(new TypeExpression(Tag.STRING))) {
 				return true;
-			}
-			else if(typeRight.assertEqual(new TypeExpression(Tag.STRING))) {
+			} else if (typeRight.assertEqual(new TypeExpression(Tag.STRING))) {
 				type = typeRight;
 				return true;
 			}
 
-			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER)) || typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
-		}
-		else
+			return typeLeft.assertEqual(typeRight) && (typeLeft.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| typeLeft.assertEqual(new TypeExpression(Tag.FLOAT)));
+		} else
 			throw new StreeException("Type error while checking null types !  :StreePLUSAFF");
 	}
 

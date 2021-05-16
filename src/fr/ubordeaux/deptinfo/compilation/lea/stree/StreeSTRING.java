@@ -28,10 +28,10 @@ public class StreeSTRING extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
-	
+
 	@Override
 	public boolean checkType() {
 		return true;

@@ -23,7 +23,7 @@ public class StreeMINUS extends Stree {
 	}
 
 	@Override
-	public Exp getExp(){
+	public Exp getExp() {
 		return exp;
 	}
 
@@ -38,7 +38,8 @@ public class StreeMINUS extends Stree {
 		Type typeRight = getRight().getType();
 		type = typeLeft;
 		if ((typeLeft != null) && (typeRight != null))
-			return type.assertEqual(typeRight) && (type.assertEqual(new TypeExpression(Tag.INTEGER)) || type.assertEqual(new TypeExpression(Tag.FLOAT)));
+			return type.assertEqual(typeRight) && (type.assertEqual(new TypeExpression(Tag.INTEGER))
+					|| type.assertEqual(new TypeExpression(Tag.FLOAT)));
 		else if ((typeLeft != null) && (typeRight == null))
 			return type.assertEqual(new TypeExpression(Tag.INTEGER)) || type.assertEqual(new TypeExpression(Tag.FLOAT));
 		else

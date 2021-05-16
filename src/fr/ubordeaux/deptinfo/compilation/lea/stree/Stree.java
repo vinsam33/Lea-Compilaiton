@@ -21,7 +21,7 @@ public abstract class Stree {
 	private static int uniqId = 0;
 	private Stree left;
 	private Stree right;
-	
+
 	public Stree(Stree left, Stree right) throws TypeException, StreeException {
 		this.id = uniqId++;
 		this.left = left;
@@ -123,7 +123,8 @@ public abstract class Stree {
 	}
 
 	public Stm generateIntermediateCode() throws StreeException {
-		throw new StreeException("Not yet implemented: generateIntermediateCode() in " + this.getClass().getSimpleName());
+		throw new StreeException(
+				"Not yet implemented: generateIntermediateCode() in " + this.getClass().getSimpleName());
 	}
 
 	public boolean checkType() throws StreeException {
@@ -142,4 +143,4 @@ public abstract class Stree {
 		throw new StreeException("Not yet implemented: getLabelFin() in " + this.getClass().getSimpleName());
 	}
 
-	}
+}

@@ -53,5 +53,4 @@ public class BINOP extends Exp {
 		return binop;
 	}
 
-
 }
