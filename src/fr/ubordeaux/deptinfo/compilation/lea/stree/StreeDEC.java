@@ -10,17 +10,33 @@ public class StreeDEC extends Stree {
 	private Boolean rank;
 	private Type type;
 	private Exp exp;
+	private Stm stm;
+
 
 	public StreeDEC(Stree left, Boolean rank) throws TypeException, StreeException {
 		super(left);
 		this.rank = rank;
 		this.exp = left.getExp();
+		this.stm = generateIntermediateCode();
+	}
+
+
+	@Override
+	public Stm generateIntermediateCode() throws StreeException{
+		return new MOVE(getLeft().getExp(),new BINOP(BINOP.Code.PLUS, getLeft().getExp(), new CONST(-1)));
 	}
 
 	@Override
 	public Exp getExp(){
 		return exp;
 	}
+
+	@Override
+	public Stm getStm(){
+		return stm;
+	}
+
+	
 
 	@Override
 	public boolean checkType() throws StreeException {

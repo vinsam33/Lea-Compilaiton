@@ -76,6 +76,12 @@
 			classpath="${bin}" output="${data}/input-5.output" error="${data}/input-5.error">
 			<arg value="${data}/input-5.lea" />
 		</java>
+
+		<!-- -->
+		<java classname="fr.ubordeaux.deptinfo.compilation.lea.Main"
+			classpath="${bin}" output="${data}/input-6.output" error="${data}/input-6.error">
+			<arg value="${data}/input-6.lea" />
+		</java>
 	</target>
 
 	<!-- ================================= = target: clean ================================= -->

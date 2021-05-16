@@ -1,0 +1,12 @@
+class main {
+	private m: integer;
+	private s: integer;
+	
+	main(args: list<string>) {
+		m := 3;
+		s := 0;
+		while(s!=m)
+            s:= s--;
+	}
+ 
+}
