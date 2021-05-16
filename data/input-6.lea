@@ -6,7 +6,7 @@ class main {
 		m := 3;
 		s := 0;
 		while(s!=m)
-            s:= s--;
+            s:= s++;
 	}
  
 }
