@@ -11,18 +11,16 @@ public class StreeDEFAULT extends Stree {
 
 	private Stm stm;
 	private Type type;
-	private Label labelTrue;
 
 	public StreeDEFAULT(Stree left) throws TypeException, StreeException {
 		super(left);
 		this.type = new TypeExpression(Tag.VOID);
-		this.labelTrue = new Label();
 		this.stm = generateIntermediateCode();
 	}
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException {
-		return new SEQ(new LABEL(labelTrue), getLeft().getStm());
+		return getLeft().getStm();
 	}
 
 	@Override
@@ -38,12 +36,17 @@ public class StreeDEFAULT extends Stree {
 
 	@Override
 	public Label getLabelTrue() {
-		return labelTrue;
+		return null;
 	}
 
 	@Override
 	public Label getLabelFalse() {
-		return labelTrue;
+		return null;
+	}
+
+	@Override
+	public Label getLabelFin(){
+		return null;
 	}
 
 	@Override
