@@ -10,6 +10,8 @@ import fr.ubordeaux.deptinfo.compilation.lea.intermediate.ExpList;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.LabelList;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Temp;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.TempList;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
 
@@ -104,8 +106,16 @@ public abstract class Stree {
 		throw new StreeException("Not yet implemented: getType() in " + this.getClass().getSimpleName());
 	}
 
+	public Temp getTemp() throws StreeException {
+		throw new StreeException("Not yet implemented: getTemp() in " + this.getClass().getSimpleName());
+	}
+
 	public ExpList getExpList() throws StreeException {
 		throw new StreeException("Not yet implemented: getExpList() in " + this.getClass().getSimpleName());
+	}
+
+	public TempList getTempList() throws StreeException {
+		throw new StreeException("Not yet implemented: getTempList() in " + this.getClass().getSimpleName());
 	}
 
 	public LabelList getLabelList() throws StreeException {
