@@ -16,14 +16,17 @@ public class StreeDEC extends Stree {
 	public StreeDEC(Stree left, Boolean rank) throws TypeException, StreeException {
 		super(left);
 		this.rank = rank;
-		this.exp = left.getExp();
+		this.exp = new StreeMINUS(left, new StreeINTEGER(-1)).getExp();
 		this.stm = generateIntermediateCode();
 	}
 
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException{
-		return new MOVE(getLeft().getExp(),new BINOP(BINOP.Code.PLUS, getLeft().getExp(), new CONST(-1)));
+		if(rank)
+			return new MOVE(getLeft().getExp(), exp);
+		else
+			return new MOVE(exp, getLeft().getExp());
 	}
 
 	@Override
