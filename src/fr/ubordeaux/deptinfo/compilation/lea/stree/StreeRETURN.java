@@ -5,7 +5,7 @@ import fr.ubordeaux.deptinfo.compilation.lea.intermediate.MOVE;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.NAME;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.Stm;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
-import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
+import fr.ubordeaux.deptinfo.compilation.lea.type.*;
 
 public class StreeRETURN extends Stree {
 
@@ -19,6 +19,11 @@ public class StreeRETURN extends Stree {
 	@Override
 	public Stm getStm() {
 		return stm;
+	}
+
+	@Override
+	public boolean checkType() throws StreeException {
+		return true;
 	}
 
 }
