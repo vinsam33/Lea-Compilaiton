@@ -1,5 +1,6 @@
 package fr.ubordeaux.deptinfo.compilation.lea.stree;
 
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Temp;
 import fr.ubordeaux.deptinfo.compilation.lea.type.*;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.*;
 
@@ -15,13 +16,16 @@ public class StreeSUCC extends Stree {
 	public StreeSUCC(Stree left, Boolean rank) throws TypeException, StreeException {
 		super(left);
 		this.rank = rank;
-		this.exp = left.getExp();
+		this.exp = new StreePLUS(left, new StreeINTEGER(1)).getExp();
 		this.stm = generateIntermediateCode();
 	}
 
 	@Override
 	public Stm generateIntermediateCode() throws StreeException{
-		return new MOVE(getLeft().getExp(),new BINOP(BINOP.Code.PLUS, getLeft().getExp(), new CONST(1)));
+		if(rank)
+			return new MOVE(getLeft().getExp(), exp);
+		else
+			return new MOVE(exp, getLeft().getExp());
 	}
 	@Override
 	public Exp getExp(){
