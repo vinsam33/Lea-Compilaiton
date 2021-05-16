@@ -8,4 +8,20 @@ public class TempList {
 		this.head = head;
 		this.tail = tail;
 	}
+
+	public TempList(Temp head) {
+		this(head, null);
+	}
+
+	public Temp getHead() {
+		return head;
+	}
+
+	public TempList getTail() {
+		return tail;
+	}
+
+	public boolean hasNext() {
+		return tail != null;
+	}
 }
