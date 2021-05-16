@@ -3,6 +3,8 @@ package fr.ubordeaux.deptinfo.compilation.lea.stree;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.*;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Label;
 import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.LabelList;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.Temp;
+import fr.ubordeaux.deptinfo.compilation.lea.intermediate.temp.TempList;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Tag;
 import fr.ubordeaux.deptinfo.compilation.lea.type.Type;
 import fr.ubordeaux.deptinfo.compilation.lea.type.TypeException;
@@ -13,8 +15,8 @@ public class StreePRODUCT extends Stree {
 	private Stm stm;
 	private Type type;
 	private Label labelFin;
-	private ExpList exps;
 	private LabelList labels;
+	private TempList temps;
 
 	public StreePRODUCT(Stree left, Stree right) throws TypeException, StreeException {
 		super(left, right);
@@ -27,52 +29,58 @@ public class StreePRODUCT extends Stree {
 		boolean defR = false;
 		boolean caseL = false;
 		boolean caseR = false;
-		labelFin = new Label();
+
 
 		if(getLeft().getLabelTrue() != null && getRight().getType().assertEqual(new TypeExpression(Tag.VOID))) {
+			//If the initial product is case and default.
 			defR = true;
 			caseL = true;
 		}
 		else if (getLeft().getLabelTrue() != null && getRight().getLabelTrue() != null) {
+			//If the initial product is case and case.
 			caseL = true;
 			caseR = true;
 		}
-		//System.out.println("defR " + defR);
-		//System.out.println("caseL " + caseL);
-		//System.out.println("caseR " + caseR);
 
-		if((caseL && defR) || (caseL && caseR)) {
-			Label l = getLeft().getLabelTrue();
-			Label r = getRight().getLabelTrue();
-			exps = new ExpList(getRight().getExp());
-			if(caseR)
-				exps = new ExpList(getRight().getExp(), exps);
-			exps = new ExpList(getLeft().getExp(), exps);
+		if(caseL && defR) {
+			labelFin = new Label();
+			Label r = getLeft().getLabelFalse();
+			temps = new TempList(getLeft().getTemp());
 			labels = new LabelList(labelFin);
 			labels = new LabelList(r,labels);
-			labels = new LabelList(l,labels);
 
-			if(defR)
-				return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), new SEQ(getRight().getStm(), new LABEL(labelFin)));
+			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),new SEQ(new SEQ( new LABEL(r), getRight().getStm()), new LABEL(labelFin)));
+		}
+		else if(caseL && caseR) {
+			labelFin = getRight().getLabelFalse();
+			Label r = getLeft().getLabelFalse();
+			Temp t1 = getRight().getTemp();
+			Temp t2 = getLeft().getTemp();
+			temps = new TempList(t1);
+			temps = new TempList(t2, temps);
 
-			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), new SEQ(getRight().getStm(), new LABEL(labelFin)));
+			TEMP tmp_stm1 = new TEMP(t1);
+			TEMP tmp_stm2 = new TEMP(t2);
+			Stm tmp = new MOVE(tmp_stm1, tmp_stm2);
+
+			labels = new LabelList(labelFin);
+			labels = new LabelList(r,labels);
+
+			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)),new SEQ(new SEQ(new SEQ(new LABEL(r), tmp), new SEQ(getRight().getStm(), new JUMP(labelFin))), new LABEL(labelFin)));
 		}
 		else {
 			labels = getRight().getLabelList();
-			Label l = getLeft().getLabelTrue();
-			labels = new LabelList(l,labels);
-			exps = getRight().getExpList();
-			exps = new ExpList(getLeft().getExp(), exps);
+			Label r = getLeft().getLabelFalse();
+			labels = new LabelList(r, labels);
+			labelFin = getRight().getLabelFin();
+			temps = getRight().getTempList();
+			TEMP tmp_stm1 = new TEMP(temps.getHead());
+			TEMP tmp_stm2 = new TEMP(getLeft().getTemp());
+			temps = new TempList(getLeft().getTemp(), temps);
+			Stm tmp = new MOVE(tmp_stm1, tmp_stm2);
 
-			LabelList finL = labels;
-			do{
-				finL = finL.getTail();
-			} while(finL.getTail() != null);
-			labelFin = finL.getHead();
-
-			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), getRight().getStm());
+			return new SEQ(new SEQ(getLeft().getStm(), new JUMP(labelFin)), new SEQ(new SEQ(new LABEL(r), tmp), getRight().getStm()));
 		}
-
 	}
 
 	@Override
@@ -89,10 +97,6 @@ public class StreePRODUCT extends Stree {
 		return true;
 	}
 
-	@Override
-	public ExpList getExpList(){
-		return exps;
-	}
 
 	@Override
 	public LabelList getLabelList(){
@@ -113,4 +117,10 @@ public class StreePRODUCT extends Stree {
 	public Label getLabelFalse() {
 		return null;
 	}
+
+	@Override
+	public TempList getTempList() {
+		return temps;
+	}
+
 }
